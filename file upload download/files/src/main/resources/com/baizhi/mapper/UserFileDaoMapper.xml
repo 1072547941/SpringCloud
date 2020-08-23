@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.UserFileDao">
+
+<!-- 根据用户id查询当前用户的文件信息-->
+    <select id="findByUserId" resultType="UserFile" parameterType="Integer">
+        select * from t_files
+            where userId = #{id}
+    </select>
+<!--useGeneratedKeys="true" keyProperty="id"-->
+    <select id="save" parameterType="UserFile" >
+        insert into t_files(id,oldFileName,newFileName,ext,path,size,type,isImg,downcounts,uploadTime,userId)
+            values(#{id},#{oldFileName},#{newFileName},#{ext},#{path},#{size},#{type},#{isImg},#{downcounts},#{uploadTime},#{userId});
+    </select>
+
+    <select id="findById" resultType="UserFile">
+        select * from t_files where id = #{id};
+    </select>
+
+    <update id="updateFilecounts">
+        update t_files set  downcounts = #{downcounts}  where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from t_files where id = #{id}
+    </delete>
+</mapper>
