@@ -33,4 +33,5 @@ public class MyLogGateWayFilter implements GlobalFilter, Ordered
     public int getOrder() {
         return 0;
     }
+    //测试
 }
